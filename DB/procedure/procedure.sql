@@ -25,3 +25,8 @@ CREATE OR REPLACE PROCEDURE select_all_utilisateur()
 BEGIN
     SELECT * FROM mytable limit 10;
 END //
+
+CREATE OR REPLACE PROCEDURE update_utilisateur()
+BEGIN
+    --
+END //
