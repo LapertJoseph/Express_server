@@ -6,6 +6,7 @@ const {
     selectAllUser, 
     insertUser,
     deleteUser,
+    updateUser,
 } = require('../controllers/user_controller');
 
 router
@@ -15,7 +16,6 @@ router
     .get(selectAllUser)
     .post(insertUser)
     .delete(deleteUser)
+    .put(updateUser)
     
-
-
 module.exports = router;   

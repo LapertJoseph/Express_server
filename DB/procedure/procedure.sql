@@ -35,4 +35,35 @@ BEGIN
     email = p_email;
 END //
 
--- CREATE OR REPLACE PROCEDURE update_user
+CREATE OR REPLACE PROCEDURE update_user(
+    IN p_id INT(100),
+    IN p_name varchar(255),
+    IN p_phone varchar(255),
+    IN p_email varchar(255),
+    IN p_address varchar(255),
+    IN p_postalZip varchar(255),
+    IN p_region varchar(255),
+    IN p_country varchar(100),
+    IN p_list varchar(255),
+    IN p_alphanumeric varchar(255),
+    IN p_currency varchar(100),
+    IN p_numberrange mediumint(9),
+    IN p_text text
+)
+BEGIN
+    UPDATE mytable
+    SET 
+        name = p_name,
+        phone = p_phone,
+        email = p_email,
+        address = p_address,
+        postalZip = p_postalZip,
+        region = p_region,
+        country = p_country,
+        list = p_list,
+        alphanumeric = p_alphanumeric,
+        currency = p_currency,
+        numberrange = p_numberrange,
+        text = p_text
+    WHERE id = p_id;
+END //
