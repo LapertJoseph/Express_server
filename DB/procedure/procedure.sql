@@ -21,12 +21,12 @@ BEGIN
     VALUES (p_name, p_phone, p_email, p_address, p_postalZip, p_region, p_country, p_list, p_alphanumeric, p_currency, p_numberrange, p_text);
 END //
 
-CREATE OR REPLACE PROCEDURE select_all_utilisateur()
+CREATE OR REPLACE PROCEDURE select_all_user()
 BEGIN
     SELECT * FROM mytable limit 10;
 END //
 
-CREATE OR REPLACE PROCEDURE delete_utilisateur (
+CREATE OR REPLACE PROCEDURE delete_user (
     IN p_email VARCHAR(255)
 )
 BEGIN
@@ -34,3 +34,5 @@ BEGIN
     WHERE
     email = p_email;
 END //
+
+-- CREATE OR REPLACE PROCEDURE update_user
