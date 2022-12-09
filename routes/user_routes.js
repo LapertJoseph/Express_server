@@ -5,6 +5,7 @@ const { route } = require('express/lib/application');
 const {
     selectAllUser, 
     insertUser,
+    deleteUser,
 } = require('../controllers/user_controller');
 
 router
@@ -13,6 +14,7 @@ router
     .route('/users')
     .get(selectAllUser)
     .post(insertUser)
+    .delete(deleteUser)
     
 
 
