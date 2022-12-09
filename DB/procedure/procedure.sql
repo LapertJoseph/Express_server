@@ -26,7 +26,11 @@ BEGIN
     SELECT * FROM mytable limit 10;
 END //
 
-CREATE OR REPLACE PROCEDURE update_utilisateur()
+CREATE OR REPLACE PROCEDURE delete_utilisateur (
+    IN p_email VARCHAR(255)
+)
 BEGIN
-    --
+    DELETE FROM mytable 
+    WHERE
+    email = p_email;
 END //
