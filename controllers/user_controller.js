@@ -42,7 +42,7 @@ module.exports = {
         }
     },
     updateUser: async (req, res) => {
-        let connection;
+        let connection; 
         const {id,name, phone, email, address, postalZip, region, country, list, alphanumeric, currency, numberrange, text} = req.body;
         try {
             connection = await pool.getConnection();
