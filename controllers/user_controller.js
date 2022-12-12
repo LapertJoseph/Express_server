@@ -46,7 +46,7 @@ module.exports = {
         const {id,name, phone, email, address, postalZip, region, country, list, alphanumeric, currency, numberrange, text} = req.body;
         try {
             connection = await pool.getConnection();
-            const result = await connection.query('CALL update_user(?,?,?,?,?,?,?,?,?,?,?,?,?);', [ id, name, phone, email, address, postalZip, region, country, list, alphanumeric, currency, numberrange, text]);
+            const result = await connection.query('CALL update_user(?,?,?,?,?,?,?,?,?,?,?,?,?);', [id, name, phone, email, address, postalZip, region, country, list, alphanumeric, currency, numberrange, text]);
             return res.status(200).json({success: result});
         } catch (error) {
             res.status(400).json({error: error.message});
