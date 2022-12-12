@@ -5,12 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
+    "dev": "cross-env NODE_ENV=dev nodemon app.js",
     "procDB": "mariadb -uroot -pabc < ./DB/procedure/procedure.sql"
   },
   "author": "Maszala",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
     "mariadb": "^3.0.2",
