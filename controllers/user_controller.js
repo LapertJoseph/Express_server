@@ -19,7 +19,6 @@ module.exports = {
       const {firstName, lastName, mobile, passwordHash, admin, vendor, registeredAt} = req.body;
       connection = await pool.getConnection();
       const data = await connection.query("CALL post_user(?,?,?,?,?,?,?);", [firstName, lastName, mobile, passwordHash, admin, vendor, registeredAt]);
-      console.log(data);
       return res.status(200).json({ success: true, data: data });
     } catch (error) {
       return res.status(400).json({ error: error.message });
