@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
-    "procDB": "mariadb -uroot -pabc < ./DB/procedure/procedure.sql"
+    "procDB": "mariadb -uroot -pabc < ./DB/procedure/procedure.sql",
+    "procSch": "mariadb -uroot -pabc < ./DB/schema/schema.sql",
+    "procSeed": "mariadb -uroot -pabc < ./DB/seed/seed.sql"
+
   },
   "author": "Maszala",
   "license": "ISC",
