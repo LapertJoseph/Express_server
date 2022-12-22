@@ -39,4 +39,17 @@ module.exports = {
       if(connection) connection.end();
     }
   },
+  deleteUser: async (req, res) => {
+    let connection;
+    try {
+      const {id} = req.params;
+      connection = await pool.getConnection();
+      const data = await connection.query("CALL delete_user(?);", [id]);
+      res.status(200).json({success: true, data: data})
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    } finally {
+      if(connection) connection.end();
+    }
+  }
 };
