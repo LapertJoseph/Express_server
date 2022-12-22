@@ -33,3 +33,8 @@ BEGIN
     UPDATE user 
     SET firstName = p_firstName, lastName = p_lastName, passwordHash = p_passwordHash, `admin` = p_admin, vendor = p_vendor, registeredAt = p_registeredAt;
 END //
+
+CREATE OR REPLACE PROCEDURE delete_user ()
+BEGIN
+    DELETE FROM user WHERE id = 52;
+END //
