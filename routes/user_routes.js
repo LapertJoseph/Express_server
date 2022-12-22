@@ -1,7 +1,7 @@
 const router = require('express-promise-router')();
 
 
-const { selectAllUser, postUser, updateUser } = require('../controllers/user_controller');
+const { selectAllUser, postUser, updateUser, deleteUser } = require('../controllers/user_controller');
 
 router
     .route('/')
@@ -10,6 +10,8 @@ router
     .get(selectAllUser)
     .post(postUser)
     .put(updateUser)
+router
+    .route('/users/:id')
+    .delete(deleteUser)
     
-    
-module.exports = router;   
+module.exports = router;
