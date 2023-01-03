@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
-    "procDB": "mariadb -uroot -pabc < ./DB/procedure/procedure.sql",
+    "procUser": "mariadb -uroot -pabc < ./DB/procedure/user_procedure.sql",
+    "procCart": "mariadb -uroot -pabc < ./DB/procedure/cart_procedure.sql",
     "procSch": "mariadb -uroot -pabc < ./DB/schema/schema.sql",
     "procSeed": "mariadb -uroot -pabc < ./DB/seed/seed.sql"
 
