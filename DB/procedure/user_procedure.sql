@@ -22,7 +22,7 @@ BEGIN
 END //
 
 CREATE OR REPLACE PROCEDURE update_user (
-    IN p_id bigint(20),
+    IN p_id BIGINT(20),
     IN p_firstName VARCHAR(50),
     IN p_lastName VARCHAR(50),
     IN p_passwordHash VARCHAR(32),
