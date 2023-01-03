@@ -1,7 +1,7 @@
 const router = require('express-promise-router')();
 
 
-const { selectAllUser, postUser, updateUser, deleteUser } = require('../controllers/user_controller');
+const { selectAllUser, postUser, updateUser, deleteUser, selectAllCart } = require('../controllers/user_controller');
 
 router
     .route('/')
@@ -13,5 +13,8 @@ router
 router
     .route('/users/:id')
     .delete(deleteUser)
+router
+    .route('/cart')
+    .get(selectAllCart)
     
 module.exports = router;

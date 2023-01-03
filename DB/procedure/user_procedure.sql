@@ -1,4 +1,4 @@
-use testdbjoe;
+use prod;
 
 DELIMITER //
 

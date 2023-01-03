@@ -51,5 +51,18 @@ module.exports = {
     } finally {
       if(connection) connection.end();
     }
-  }
+  },
+  selectAllCart: async (req, res) => {
+    let connection;
+    try {
+      connection = await pool.getConnection();
+      const data = await connection.query('CALL get_all_cart;');
+      res.status(200).json({success: true, data: data});
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    } finally {
+      if(connection) connection.end();
+    }
+  },
+  
 };
