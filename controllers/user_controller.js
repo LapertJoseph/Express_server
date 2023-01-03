@@ -64,5 +64,18 @@ module.exports = {
       if(connection) connection.end();
     }
   },
-  
+  postCart: async (req, res) => {
+    let connection;
+    const {sessionId, token, status, createdAt} = req.body;
+    try {
+      connection = await pool.getConnection();
+      const data = await connection.query('CALL post_cart(?,?,?,?);', [sessionId, token, status, createdAt]);
+      res.status(200).json({success: true, data: data});
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    } finally {
+      if(connection) connection.end();
+    }
+  },
+
 };
