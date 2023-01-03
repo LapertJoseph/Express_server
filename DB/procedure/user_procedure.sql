@@ -22,6 +22,7 @@ BEGIN
 END //
 
 CREATE OR REPLACE PROCEDURE update_user (
+    IN p_id bigint(20),
     IN p_firstName VARCHAR(50),
     IN p_lastName VARCHAR(50),
     IN p_passwordHash VARCHAR(32),
@@ -31,7 +32,8 @@ CREATE OR REPLACE PROCEDURE update_user (
 )
 BEGIN
     UPDATE user 
-    SET firstName = p_firstName, lastName = p_lastName, passwordHash = p_passwordHash, `admin` = p_admin, vendor = p_vendor, registeredAt = p_registeredAt;
+    SET firstName = p_firstName, lastName = p_lastName, passwordHash = p_passwordHash, `admin` = p_admin, vendor = p_vendor, registeredAt = p_registeredAt
+    WHERE id = p_id;
 END //
 
 CREATE OR REPLACE PROCEDURE delete_user (

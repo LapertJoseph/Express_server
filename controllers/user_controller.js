@@ -30,8 +30,9 @@ module.exports = {
     let connection;
     try {
       const {firstName, lastName, passwordHash, admin, vendor, registeredAt} = req.body;
+      const {id} = req.params;
       connection = await pool.getConnection();
-      const data = await connection.query("CALL update_user(?,?,?,?,?,?);", [firstName, lastName, passwordHash, admin, vendor, registeredAt]);
+      const data = await connection.query("CALL update_user(?,?,?,?,?,?,?);", [id, firstName, lastName, passwordHash, admin, vendor, registeredAt]);
       res.status(200).json({success: true, data: data});
     } catch (error) {
       res.status(400).json({error: error.message})
@@ -77,5 +78,18 @@ module.exports = {
       if(connection) connection.end();
     }
   },
-
+  updateCart: async (req,res) => {
+    let connection;
+    const {sessionId, token, status, createdAt} = req.body;
+    const {id} = req.params;
+    try {
+      connection = await pool.getConnection();
+      const data = await connection.query('CALL update_cart(?,?,?,?,?);', [id, sessionId, token, status, createdAt]);
+      res.status(200).json({success: true, data: data});
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    } finally {
+      if(connection) connection.end();
+    }
+  }
 };
