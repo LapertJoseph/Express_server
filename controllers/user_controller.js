@@ -91,5 +91,18 @@ module.exports = {
     } finally {
       if(connection) connection.end();
     }
+  },
+  deleteCart: async (req, res) => {
+    let connection;
+    const {id} = req.params;
+    try {
+      connection = await pool.getConnection();
+      const data = await connection.query('CALL delete_cart(?)', [id]);
+      res.status(200).json({sucess: true , data: data, message: "Cart deleted"})
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    } finally {
+      if(connection) connection.end();
+    }
   }
 };

@@ -30,3 +30,10 @@ BEGIN
     SET sessionId = p_sessionId, token = p_token, status = p_status, createdAt = p_createdAt
     WHERE id = p_id;
 END //
+
+CREATE OR REPLACE PROCEDURE delete_cart(
+    IN p_id BIGINT(20)
+)
+BEGIN
+    DELETE FROM cart WHERE id = p_id;
+END //
