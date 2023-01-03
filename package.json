@@ -5,12 +5,19 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "procDB": "mariadb -uroot -pabc < ./DB/procedure/procedure.sql"
+    "dev": "cross-env NODE_ENV=dev nodemon app.js",
+    "procUser": "mariadb -uroot -pabc < ./DB/procedure/user_procedure.sql",
+    "procCart": "mariadb -uroot -pabc < ./DB/procedure/cart_procedure.sql",
+    "procSch": "mariadb -uroot -pabc < ./DB/schema/schema.sql",
+    "procSeed": "mariadb -uroot -pabc < ./DB/seed/seed.sql"
+
   },
   "author": "Maszala",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
     "mariadb": "^3.0.2",
