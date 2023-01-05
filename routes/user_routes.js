@@ -10,7 +10,8 @@ const {
     postCart, 
     updateCart, 
     deleteCart, 
-    login 
+    login, 
+    logout,
 } = require('../controllers/user_controller');
 
 router
@@ -18,6 +19,9 @@ router
 router
     .route('/auth')
     .get(login)
+router
+    .route('/auth/logout')
+    .get(logout)
 router
     .route('/users')
     .get(selectAllUser)

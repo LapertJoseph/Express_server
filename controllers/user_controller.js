@@ -7,13 +7,28 @@ module.exports = {
     const {email, passwordHash} = req.body;
     try {
       connection = await pool.getConnection();
-      const data = await connection.query("CALL login_user(?,?);", [email, passwordHash]);
-      res.status(200).json({success: true, data: data[0][0]})
+      const result = await connection.query("CALL login_user(?,?);", [email, passwordHash]);
+      const data = result[0][0];
+      if (!data) {
+        return res.status(400).send();
+      }
+      req.session.id = data.id;
+      req.session.email = data.email;
+      res.status(200).json({success: true, data: data})
     } catch (error) {
       res.status(400).json({error: error.message})
     } finally {
       if(connection) connection.end();
     }
+  },
+  logout: async(req, res) => {
+    console.log(req.session);
+    if (req.session.id) {
+      req.session.destroy();
+      console.log('Session:', req.session);
+      return res.status(200).send('Session destroy');
+    }
+    res.status(401).send();
   },
   selectAllUser: async (req, res) => {
     let connection;
