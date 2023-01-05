@@ -1,6 +1,20 @@
 const pool = require("../config/database");
 
 module.exports = {
+
+  login: async (req,res) => {
+    let connection;
+    const {email, passwordHash} = req.body;
+    try {
+      connection = await pool.getConnection();
+      const data = await connection.query("CALL login_user(?,?);", [email, passwordHash]);
+      res.status(200).json({success: true, data: data[0][0]})
+    } catch (error) {
+      res.status(400).json({error: error.message})
+    } finally {
+      if(connection) connection.end();
+    }
+  },
   selectAllUser: async (req, res) => {
     let connection;
     try {

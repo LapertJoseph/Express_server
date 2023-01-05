@@ -1,10 +1,23 @@
 const router = require('express-promise-router')();
 
 
-const { selectAllUser, postUser, updateUser, deleteUser, selectAllCart, postCart, updateCart, deleteCart } = require('../controllers/user_controller');
+const { 
+    selectAllUser, 
+    postUser, 
+    updateUser, 
+    deleteUser, 
+    selectAllCart, 
+    postCart, 
+    updateCart, 
+    deleteCart, 
+    login 
+} = require('../controllers/user_controller');
 
 router
     .route('/')
+router
+    .route('/auth')
+    .get(login)
 router
     .route('/users')
     .get(selectAllUser)
