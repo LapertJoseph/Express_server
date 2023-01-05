@@ -30,6 +30,13 @@ module.exports = {
     }
     res.status(401).send();
   },
+  checkLoginStatus: async(req, res) => {
+    const {id, email} = req.session;
+    if(id !== "" && email !== "") {
+      return res.status(200).json({success: {id, email}});
+    }
+    res.status(401).send();  
+  },
   selectAllUser: async (req, res) => {
     let connection;
     try {
