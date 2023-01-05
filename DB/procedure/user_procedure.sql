@@ -4,10 +4,10 @@ DELIMITER //
 
 CREATE OR REPLACE PROCEDURE login_user(
     IN p_email VARCHAR(50),
-    IN p_passwordHash VARCHAR(32)
+    IN p_passwordHash VARCHAR(255)
 )
 BEGIN
-    SELECT id, p_email
+    SELECT id, email, passwordHash
     FROM user
     WHERE user.email = p_email AND user.passwordHash = SHA2(p_passwordHash, 512);
 END //
