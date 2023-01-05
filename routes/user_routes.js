@@ -18,7 +18,7 @@ router
     .route('/')
 router
     .route('/auth')
-    .get(login)
+    .post(login)
 router
     .route('/auth/logout')
     .get(logout)
