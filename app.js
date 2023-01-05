@@ -3,10 +3,18 @@ const express = require('express');
 const app = express();
 const routes = require('./routes/user_routes');
 const cors = require('cors')
+const session = require('express-session');
 app.use(express.json());
 
 // Résoud le problème de Bigint
 BigInt.prototype.toJSON = function() { return this.toString() }; 
+
+app.use(session({
+    secret: 'Jean-michel',
+    saveUninitialized: false,
+    resave: false,
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+}));
 
 const PREFIX = process.env.NODE_ENV == 'dev' ? '/api' : '/' ;
 

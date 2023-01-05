@@ -2,6 +2,16 @@ use prod;
 
 DELIMITER //
 
+CREATE OR REPLACE PROCEDURE login_user(
+    IN p_email VARCHAR(50),
+    IN p_passwordHash VARCHAR(255)
+)
+BEGIN
+    SELECT id, email, passwordHash
+    FROM user
+    WHERE user.email = p_email AND user.passwordHash = SHA2(p_passwordHash, 512);
+END //
+
 CREATE OR REPLACE PROCEDURE get_all_users()
 BEGIN
     SELECT * FROM user LIMIT 50;
@@ -18,7 +28,7 @@ CREATE OR REPLACE PROCEDURE post_user(
 )
 BEGIN
     INSERT INTO user (firstName, lastName, mobile,  passwordHash, `admin`, vendor, registeredAt) 
-    VALUES (p_firstName, p_lastName, p_mobile, p_passwordHash, p_admin, p_vendor, p_registeredAt);
+    VALUES (p_firstName, p_lastName, p_mobile, SHA2(p_passwordHash,512), p_admin, p_vendor, p_registeredAt);
 END //
 
 CREATE OR REPLACE PROCEDURE update_user (
