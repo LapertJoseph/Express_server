@@ -2,6 +2,16 @@ use prod;
 
 DELIMITER //
 
+CREATE OR REPLACE PROCEDURE login_user(
+    IN p_email VARCHAR(50),
+    IN p_passwordHash VARCHAR(32)
+)
+BEGIN
+    SELECT id, p_email
+    FROM user
+    WHERE user.email = p_email AND user.passwordHash = p_passwordHash;
+END //
+
 CREATE OR REPLACE PROCEDURE get_all_users()
 BEGIN
     SELECT * FROM user LIMIT 50;
