@@ -6,7 +6,7 @@ const {
     login, 
     logout,
     checkLoginStatus,
-} = require('../controllers/user_controller');
+} = require('../controllers/User/user_controller');
 
 const express = require("express");
 const router = express.Router();

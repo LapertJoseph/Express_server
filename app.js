@@ -26,15 +26,10 @@ if (process.env.NODE_ENV === "dev") {
         }))
     }
 }
-
-app.get(PREFIX, (_req, res) => {
-    res.status(200).json({
-        success: 'Vous etes connecté !',
-    });
-});
-
 app.use(PREFIX, route);
 
-app.listen(process.env.PORT, () => {
-    console.log(`server listening on ${process.env.PORT}`);
+const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
+    console.log(`server listening on ${port}`);
 });

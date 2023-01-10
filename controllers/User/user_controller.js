@@ -1,6 +1,6 @@
 const jsonwebtoken = require('jsonwebtoken');
-const pool = require("../config/database");
-const Config = require('../config/env');
+const pool = require("../../config/database");
+const Config = require('../../config/env');
 
 module.exports = {
 
