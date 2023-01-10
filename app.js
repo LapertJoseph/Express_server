@@ -4,13 +4,13 @@ const app = express();
 const route = require('./routes');
 const cors = require('cors')
 const session = require('express-session');
+
+// Function which parse the body on Json with bigInt
+BigInt.prototype.toJSON = function() { return this.toString() }; 
 app.use(express.json());
 
-// Résoud le problème de Bigint
-BigInt.prototype.toJSON = function() { return this.toString() }; 
-
 app.use(session({
-    secret: 'Jean-michel',
+    secret: 'Jean-michel$123456789azertyzza',
     saveUninitialized: false,
     resave: false,
     cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
