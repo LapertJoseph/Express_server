@@ -16,7 +16,7 @@ app.use(session({
     cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-const PREFIX = process.env.NODE_ENV == 'dev' ? '/api' : '/' ;
+const PREFIX = "/";
 
 if (process.env.NODE_ENV === "dev") {
     if (process.env.NODE_ENV === 'dev') {
