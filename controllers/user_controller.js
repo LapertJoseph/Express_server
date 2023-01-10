@@ -1,20 +1,36 @@
+const jsonwebtoken = require('jsonwebtoken');
 const pool = require("../config/database");
+const Config = require('../config/env');
+
 
 module.exports = {
 
   login: async (req,res) => {
     let connection;
     const {email, passwordHash} = req.body;
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
     try {
       connection = await pool.getConnection();
-      const result = await connection.query("CALL login_user(?,?);", [email, passwordHash]);
+      const result = await connection.query("CALL login_user(?,?);", [email, passwordHash, ip]);
       const data = result[0][0];
-      if (!data) {
-        return res.status(400).send();
+      if (result[0].length === 0) {
+        return res.status(401).json({ success: false, data: "Compte inconnu" });
       }
+      const token = jsonwebtoken.sign(
+        {
+          email,
+          ...data
+        },
+        Config.JWT_SECRET
+      );
+      res.set("x-access-token", token);
       req.session.id = data.id;
       req.session.email = data.email;
-      res.status(200).json({success: true, data: data})
+      res.status(200).json({
+        success: true, 
+        user: data,
+        token: token
+      })
     } catch (error) {
       res.status(400).json({error: error.message})
     } finally {
