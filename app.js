@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const routes = require('./routes/user_routes');
+const route = require('./routes');
 const cors = require('cors')
 const session = require('express-session');
 app.use(express.json());
@@ -33,7 +33,7 @@ app.get(PREFIX, (_req, res) => {
     });
 });
 
-app.use(PREFIX, routes);
+app.use(PREFIX, route);
 
 app.listen(process.env.PORT, () => {
     console.log(`server listening on ${process.env.PORT}`);
