@@ -37,14 +37,15 @@ module.exports = {
       if(connection) connection.end();
     }
   },
-  logout: async(req, res) => {
-    console.log(req.session);
-    if (req.session.id) {
-      req.session.destroy();
-      console.log('Session:', req.session);
-      return res.status(200).send('Session destroy');
+  logout: (req, res) => {
+    const authHeader = req.headers["Authorization"];
+  jsonwebtoken.sign(authHeader, "", { expiresIn: 1 }, (logout) => {
+    if (logout) {
+      res.status(200).json({ message: "You have been Logged Out" });
+    } else {
+      res.status(400).json({ message: "Error" });
     }
-    res.status(401).send();
+  });
   },
   checkLoginStatus: async(req, res) => {
     const {id, email} = req.session;
